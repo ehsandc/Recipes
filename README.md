@@ -1,2 +1,2 @@
-# Recipes
-Search and Choose Recipes
+
+https://ehsandc.github.io/Recipes/
