@@ -148,7 +148,7 @@ export const RecipeListPage = () => {
             {/* Logo */}
             <Box display="flex" justifyContent="center" mb={1}>
               <Image
-                src="/recipes-logo.svg"
+                src={`${import.meta.env.BASE_URL}recipes-logo.svg`}
                 alt="Recipes Logo"
                 h={{ base: "60px", sm: "70px", md: "80px", lg: "90px" }}
                 filter={SHADOWS.logo}
