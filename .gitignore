@@ -48,8 +48,10 @@ replit.nix
 # AI Agent / Development Notes (DO NOT COMMIT)
 CODE_QUALITY_AUDIT_FINAL.md
 CODE_QUALITY_SUMMARY.md
+PUSH_SUCCESS.md
 *_AUDIT*.md
 *_SUMMARY*.md
+*_SUCCESS*.md
 .copilot/
 .cursor/
 .aider*
