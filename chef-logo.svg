@@ -1,0 +1,16 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Chef Hat -->
+  <path d="M50 80 C50 60, 70 40, 100 40 C130 40, 150 60, 150 80 L150 120 C150 130, 140 140, 130 140 L70 140 C60 140, 50 130, 50 120 Z" fill="#F5F5DC" stroke="#C53030" stroke-width="8"/>
+  
+  <!-- Fork -->
+  <rect x="95" y="55" width="4" height="30" fill="#C53030"/>
+  <rect x="105" y="55" width="4" height="30" fill="#C53030"/>
+  <rect x="95" y="85" width="14" height="40" fill="#C53030"/>
+  
+  <!-- Handle -->
+  <rect x="102" y="125" width="6" height="20" fill="#C53030"/>
+  
+  <!-- Text Banner -->
+  <rect x="30" y="160" width="140" height="30" rx="8" fill="#C53030"/>
+  <text x="100" y="180" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">RECIPES</text>
+</svg>
