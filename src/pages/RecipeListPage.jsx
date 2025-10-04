@@ -41,8 +41,19 @@ export const RecipeListPage = () => {
     return data.hits.filter(({ recipe }) => {
       const title = recipe.label.toLowerCase();
 
-      // Text search: only in recipe title
-      const matchesText = !query || title.includes(query);
+      // Text search: search in recipe title, cuisine type, health labels, and diet labels
+      const matchesText =
+        !query ||
+        title.includes(query) ||
+        (recipe.cuisineType || []).some((cuisine) =>
+          cuisine.toLowerCase().includes(query)
+        ) ||
+        (recipe.healthLabels || []).some((label) =>
+          label.toLowerCase().includes(query)
+        ) ||
+        (recipe.dietLabels || []).some((label) =>
+          label.toLowerCase().includes(query)
+        );
 
       // Diet filter: check health labels and diet labels
       const matchesDiet =
