@@ -99,7 +99,7 @@ export const Navbar = ({
       >
         <Link to="/" onClick={handleLogoClick}>
           <Image
-            src="/recipes-logo.svg"
+            src={`${import.meta.env.BASE_URL}recipes-logo.svg`}
             alt="Recipes Logo"
             h="60px"
             filter="drop-shadow(4px 4px 8px rgba(255, 255, 255, 0.9))"
@@ -596,7 +596,7 @@ export const Navbar = ({
           <Link to="/" onClick={handleLogoClick}>
             <Box
               as="img"
-              src="/recipes-logo.svg"
+              src={`${import.meta.env.BASE_URL}recipes-logo.svg`}
               alt="Recipes"
               h={{ base: "70px", sm: "75px" }}
               cursor="pointer"
