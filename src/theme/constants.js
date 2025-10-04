@@ -89,7 +89,7 @@ export const CATEGORY_DATA = [
   { emoji: "🥪", label: "Lunch", type: "search", value: "lunch" },
   { emoji: "🍽️", label: "Dinner", type: "search", value: "dinner" },
   { emoji: "🍰", label: "Desserts", type: "search", value: "dessert" },
-  { emoji: "🍹", label: "Drinks", type: "search", value: "drink" },
+  { emoji: "🍹", label: "Drinks", type: "search", value: "alcohol" },
 
   // Popular
   { emoji: "🍲", label: "Soup", type: "search", value: "soup" },

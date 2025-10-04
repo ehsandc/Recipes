@@ -41,7 +41,7 @@ export const RecipeListPage = () => {
     return data.hits.filter(({ recipe }) => {
       const title = recipe.label.toLowerCase();
 
-      // Text search: search in recipe title, cuisine type, health labels, and diet labels
+      // Text search: search in recipe title, cuisine type, health labels, diet labels, mealType, and dishType
       const matchesText =
         !query ||
         title.includes(query) ||
@@ -53,6 +53,12 @@ export const RecipeListPage = () => {
         ) ||
         (recipe.dietLabels || []).some((label) =>
           label.toLowerCase().includes(query)
+        ) ||
+        (recipe.mealType || []).some((meal) =>
+          meal.toLowerCase().includes(query)
+        ) ||
+        (recipe.dishType || []).some((dish) =>
+          dish.toLowerCase().includes(query)
         );
 
       // Diet filter: check health labels and diet labels
@@ -71,6 +77,19 @@ export const RecipeListPage = () => {
       return matchesText && matchesDiet && matchesCategory;
     });
   }, [searchTerm, selectedDiet, selectedCategory]);
+
+  /**
+   * Get suggested recipes when no results are found
+   * Returns random popular recipes as suggestions
+   */
+  const suggestedRecipes = useMemo(() => {
+    if (filteredRecipes.length > 0) return [];
+    
+    // Get random 8 recipes as suggestions
+    const allRecipes = [...data.hits];
+    const shuffled = allRecipes.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 8);
+  }, [filteredRecipes]);
 
   /**
    * Creates a handler for category pill clicks
@@ -206,18 +225,49 @@ export const RecipeListPage = () => {
       {/* Recipe Grid Section */}
       <Container maxW="container.xl" py={4}>
         {filteredRecipes.length === 0 ? (
-          <Box
-            textAlign="center"
-            py={12}
-            bg={COLORS.white}
-            borderRadius="xl"
-            boxShadow="lg"
-          >
-            <Text fontSize="2xl" fontWeight="bold" mb={2}>
-              No recipes found 😕
-            </Text>
-            <Text color="gray.600">Try adjusting your search or filters</Text>
-          </Box>
+          <>
+            <Box
+              textAlign="center"
+              py={8}
+              bg={COLORS.white}
+              borderRadius="xl"
+              boxShadow="lg"
+              mb={8}
+            >
+              <Text fontSize="2xl" fontWeight="bold" mb={2}>
+                No recipes found 😕
+              </Text>
+              <Text color="gray.600" mb={4}>
+                We couldn't find any recipes matching your search.
+              </Text>
+              <Text color="gray.500" fontSize="sm">
+                Try adjusting your search terms or explore our suggestions below
+              </Text>
+            </Box>
+
+            {/* Suggested Recipes */}
+            {suggestedRecipes.length > 0 && (
+              <>
+                <Text
+                  fontSize="xl"
+                  fontWeight="bold"
+                  mb={4}
+                  textAlign="center"
+                  color="gray.700"
+                >
+                  You might like these recipes instead:
+                </Text>
+                <SimpleGrid columns={[1, 2, 3, 4]} spacing={6}>
+                  {suggestedRecipes.map((hit, index) => (
+                    <RecipeCard
+                      key={`suggestion-${hit.recipe.label}-${index}`}
+                      recipe={hit.recipe}
+                    />
+                  ))}
+                </SimpleGrid>
+              </>
+            )}
+          </>
         ) : (
           <SimpleGrid columns={[1, 2, 3, 4]} spacing={6}>
             {filteredRecipes.map((hit, index) => (
