@@ -17,6 +17,12 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Image,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
@@ -65,6 +71,11 @@ export const Navbar = ({
   setSelectedCategory,
 }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isSearchOpen,
+    onOpen: onSearchOpen,
+    onClose: onSearchClose,
+  } = useDisclosure();
 
   const handleLogoClick = () => {
     setSearchTerm("");
@@ -93,10 +104,35 @@ export const Navbar = ({
       {/* Desktop Layout */}
       <Flex
         align="center"
-        justify="space-between"
+        justify="center"
         display={{ base: "none", lg: "flex" }}
         position="relative"
       >
+        <Box position="absolute" left={6}>
+          <IconButton
+            icon={
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#FFD700"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            }
+            onClick={onSearchOpen}
+            bg="transparent"
+            color="#FFD700"
+            size="sm"
+            aria-label="Open search"
+            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+          />
+        </Box>
         <Link to="/" onClick={handleLogoClick}>
           <Image
             src={`${import.meta.env.BASE_URL}recipes-logo.svg`}
@@ -105,32 +141,31 @@ export const Navbar = ({
             filter="drop-shadow(4px 4px 8px rgba(255, 255, 255, 0.9))"
           />
         </Link>
-
-        <Input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search recipes…"
-          size="sm"
-          maxW={SPACING.menu.dropdown.maxWidth}
-          position="absolute"
-          left="50%"
-          transform="translateX(-50%)"
-          bg="white"
-          _placeholder={{ color: "#E53E3E", fontWeight: "bold" }}
-          borderWidth="2px"
-          borderColor="#FFD700"
-          aria-label="Search recipes by name"
-        />
-
-        <Box mr={16}>
+        <Box position="absolute" right={6} display="flex" alignItems="center" gap={4}>
+          <IconButton
+            icon={
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#FFD700" strokeWidth="3" strokeLinecap="round">
+                <line x1="6" y1="10" x2="26" y2="10" />
+                <line x1="6" y1="16" x2="26" y2="16" />
+                <line x1="6" y1="22" x2="26" y2="22" />
+              </svg>
+            }
+            onClick={onOpen}
+            bg="transparent"
+            color="#FFD700"
+            size="sm"
+            aria-label="Open menu"
+            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+          />
           <Menu>
             <MenuButton
               as={Button}
               size="sm"
-              bg="#FFD700"
-              color="#E53E3E"
-              rightIcon={<ChevronDownIcon />}
+              bg="transparent"
+              color="#FFD700"
+              rightIcon={<ChevronDownIcon color="#FFD700" />}
               aria-label="Browse recipe categories"
+              fontWeight="bold"
             >
               {selectedCategory || "Categories"}
             </MenuButton>
@@ -593,6 +628,31 @@ export const Navbar = ({
       {/* Mobile Layout */}
       <Box display={{ base: "block", lg: "none" }}>
         <Flex align="center" justify="center" mb={2} position="relative">
+          <IconButton
+            icon={
+              <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#FFD700"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            }
+            onClick={onSearchOpen}
+            bg="transparent"
+            color="#FFD700"
+            size="sm"
+            aria-label="Open search"
+            position="absolute"
+            left="0"
+            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+          />
           <Link to="/" onClick={handleLogoClick}>
             <Box
               as="img"
@@ -604,28 +664,57 @@ export const Navbar = ({
             />
           </Link>
           <IconButton
-            icon={<HamburgerIcon />}
+            icon={
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#FFD700" strokeWidth="3" strokeLinecap="round">
+                <line x1="6" y1="10" x2="26" y2="10" />
+                <line x1="6" y1="16" x2="26" y2="16" />
+                <line x1="6" y1="22" x2="26" y2="22" />
+              </svg>
+            }
             onClick={onOpen}
-            bg="#FFD700"
-            color="#E53E3E"
+            bg="transparent"
+            color="#FFD700"
             size="sm"
             aria-label="Open menu"
             position="absolute"
             right="0"
+            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
           />
         </Flex>
 
-        <Input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search recipes…"
-          h="38px"
-          fontSize="16px"
-          bg="white"
-          _placeholder={{ color: "#E53E3E", fontWeight: "bold" }}
-          borderWidth="2px"
-          borderColor="#FFD700"
-        />
+        {/* Search Modal for Mobile */}
+        <Modal isOpen={isSearchOpen} onClose={onSearchClose} isCentered>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Search Recipes</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Input
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search recipes…"
+                h="38px"
+                fontSize="16px"
+                bg="white"
+                _placeholder={{ color: "#E53E3E", fontWeight: "bold" }}
+                borderWidth="2px"
+                borderColor="#FFD700"
+                autoFocus
+                mb={3}
+              />
+              <Button
+                w="100%"
+                bg="#FFD700"
+                color="#E53E3E"
+                _hover={{ bg: "#FFC107" }}
+                onClick={onSearchClose}
+                fontWeight="bold"
+              >
+                Search
+              </Button>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </Box>
 
       {/* Mobile Drawer Menu */}
