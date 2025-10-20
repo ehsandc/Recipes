@@ -1,5 +1,17 @@
 import { useState, useMemo, useCallback } from "react";
-import { Container, SimpleGrid, Box, Text, Image } from "@chakra-ui/react";
+import {
+  Container,
+  SimpleGrid,
+  Box,
+  Text,
+  Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  Button,
+} from "@chakra-ui/react";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 import { data } from "../utils/data";
 import { Navbar } from "../components/Navbar";
 import RecipeCard from "../components/RecipeCard";
@@ -142,7 +154,7 @@ export const RecipeListPage = () => {
           lg: SPACING.navbar.height.desktop,
         }}
         position="relative"
-        overflow="hidden"
+        overflow="visible"
       >
         {/* Decorative Background Pattern */}
         <Box
@@ -217,6 +229,505 @@ export const RecipeListPage = () => {
                   onClick={handleCategoryClick(category)}
                 />
               ))}
+            </Box>
+
+            {/* Categories Dropdown - Centered at bottom */}
+            <Box display="flex" justifyContent="center" mt={4} position="relative" zIndex={10}>
+              <Menu placement="bottom" strategy="fixed" flip={false} autoSelect={false}>
+                <MenuButton
+                  as={Button}
+                  size="md"
+                  bg="rgba(255,255,255,0.2)"
+                  color="white"
+                  rightIcon={<ChevronDownIcon />}
+                  fontWeight="normal"
+                  borderRadius="full"
+                  px={3}
+                  py={1}
+                  transition="all 0.3s"
+                  _hover={{ 
+                    bg: "rgba(255,255,255,0.3)",
+                    transform: "translateY(-2px)",
+                  }}
+                  _active={{ bg: "rgba(255,255,255,0.3)" }}
+                  boxShadow="none"
+                >
+                  Categories
+                </MenuButton>
+                <MenuList
+                  bg="white"
+                  maxH="400px"
+                  overflowY="auto"
+                  py={2}
+                  border="2px solid #FFD700"
+                  boxShadow="0 8px 24px rgba(229, 62, 62, 0.15)"
+                  zIndex={1001}
+                >
+                  {/* All Recipes */}
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    bg="#FFD700"
+                    color="#E53E3E"
+                    fontWeight="bold"
+                    _hover={{ bg: "#FFC107" }}
+                    mb={2}
+                    mx={2}
+                    borderRadius="md"
+                  >
+                    ✨ All Recipes
+                  </MenuItem>
+
+                  {/* World Cuisines */}
+                  <MenuItem
+                    fontWeight="bold"
+                    isDisabled
+                    color="#E53E3E"
+                    fontSize="sm"
+                    bg="rgba(255, 215, 0, 0.1)"
+                    px={3}
+                    py={2}
+                    mb={1}
+                  >
+                    🌍 WORLD CUISINES
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("mexican");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🌮 Mexican
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("italian");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍕 Italian
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("indian");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍛 Indian
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("thai");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍜 Thai
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("chinese");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🥡 Chinese
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("japanese");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍱 Japanese
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("french");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🥐 French
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("american");
+                      setSearchTerm("");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍔 American
+                  </MenuItem>
+
+                  {/* Popular */}
+                  <MenuItem
+                    fontWeight="bold"
+                    isDisabled
+                    color="#E53E3E"
+                    fontSize="sm"
+                    bg="rgba(255, 215, 0, 0.1)"
+                    px={3}
+                    py={2}
+                    mt={2}
+                    mb={1}
+                  >
+                    🔥 POPULAR
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("soup");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍲 Soup Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("chili");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🌶️ Chili Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("pasta");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍝 Pasta Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("salad");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🥗 Salad Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("bread");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍞 Bread Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("cookie");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍪 Cookie Recipes
+                  </MenuItem>
+
+                  {/* Healthy & Diet */}
+                  <MenuItem
+                    fontWeight="bold"
+                    isDisabled
+                    color="#E53E3E"
+                    fontSize="sm"
+                    bg="rgba(255, 215, 0, 0.1)"
+                    px={3}
+                    py={2}
+                    mt={2}
+                    mb={1}
+                  >
+                    🥗 HEALTHY & DIET
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("keto");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🥑 Keto Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("healthy");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    💚 Healthy Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSelectedDiet("Vegetarian");
+                      setSearchTerm("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🌱 Vegetarian Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSelectedDiet("Vegan");
+                      setSearchTerm("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🥬 Vegan Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSelectedDiet("Pescatarian");
+                      setSearchTerm("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🐟 Pescatarian Recipes
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("gluten free");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🌾 Gluten-Free Recipes
+                  </MenuItem>
+
+                  {/* Holidays */}
+                  <MenuItem
+                    fontWeight="bold"
+                    isDisabled
+                    color="#E53E3E"
+                    fontSize="sm"
+                    bg="rgba(255, 215, 0, 0.1)"
+                    px={3}
+                    py={2}
+                    mt={2}
+                    mb={1}
+                  >
+                    🎉 HOLIDAYS
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("thanksgiving");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🦃 Thanksgiving
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("christmas");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🎄 Christmas
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("halloween");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🎃 Halloween
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("easter");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🐰 Easter
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("valentine");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    💝 Valentine&apos;s Day
+                  </MenuItem>
+
+                  {/* Meal Types */}
+                  <MenuItem
+                    fontWeight="bold"
+                    isDisabled
+                    color="#E53E3E"
+                    fontSize="sm"
+                    bg="rgba(255, 215, 0, 0.1)"
+                    px={3}
+                    py={2}
+                    mt={2}
+                    mb={1}
+                  >
+                    🍽️ MEAL TYPES
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("breakfast");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍳 Breakfast
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("lunch");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🥪 Lunch
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("dinner");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍽️ Dinner
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("dessert");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍰 Desserts
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("drink");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍹 Drinks
+                  </MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      setSelectedCategory("");
+                      setSearchTerm("snack");
+                      setSelectedDiet("");
+                    }}
+                    _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
+                    pl={6}
+                    color="black"
+                  >
+                    🍿 Snacks
+                  </MenuItem>
+                </MenuList>
+              </Menu>
             </Box>
           </Box>
         </Container>
