@@ -3,10 +3,6 @@ import {
   Flex,
   Input,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
   IconButton,
   VStack,
   useDisclosure,
@@ -24,10 +20,9 @@ import {
   ModalCloseButton,
   ModalBody,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Z_INDEX, SPACING } from "../theme/constants";
+import { Z_INDEX } from "../theme/constants";
 
 /**
  * Navbar Component
@@ -130,7 +125,7 @@ export const Navbar = ({
             color="#FFD700"
             size="sm"
             aria-label="Open search"
-            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+            _hover={{ bg: "rgba(255,255,255,0.08)" }}
           />
         </Box>
         <Link to="/" onClick={handleLogoClick}>
@@ -141,10 +136,24 @@ export const Navbar = ({
             filter="drop-shadow(4px 4px 8px rgba(255, 255, 255, 0.9))"
           />
         </Link>
-        <Box position="absolute" right={6} display="flex" alignItems="center" gap={4}>
+        <Box
+          position="absolute"
+          right={6}
+          display="flex"
+          alignItems="center"
+          gap={4}
+        >
           <IconButton
             icon={
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#FFD700" strokeWidth="3" strokeLinecap="round">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                stroke="#FFD700"
+                strokeWidth="3"
+                strokeLinecap="round"
+              >
                 <line x1="6" y1="10" x2="26" y2="10" />
                 <line x1="6" y1="16" x2="26" y2="16" />
                 <line x1="6" y1="22" x2="26" y2="22" />
@@ -155,479 +164,14 @@ export const Navbar = ({
             color="#FFD700"
             size="sm"
             aria-label="Open menu"
-            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+            _hover={{ bg: "rgba(255,255,255,0.08)" }}
           />
-          <Menu>
-            <MenuButton
-              as={Button}
-              size="sm"
-              bg="transparent"
-              color="#FFD700"
-              rightIcon={<ChevronDownIcon color="#FFD700" />}
-              aria-label="Browse recipe categories"
-              fontWeight="bold"
-            >
-              {selectedCategory || "Categories"}
-            </MenuButton>
-            <MenuList
-              bg="white"
-              maxH={SPACING.menu.dropdown.maxHeight}
-              overflowY="auto"
-              py={2}
-              border="2px solid #FFD700"
-              boxShadow="0 8px 24px rgba(229, 62, 62, 0.15)"
-            >
-              {/* All Recipes */}
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                bg="#FFD700"
-                color="#E53E3E"
-                fontWeight="bold"
-                _hover={{ bg: "#FFC107" }}
-                mb={2}
-                mx={2}
-                borderRadius="md"
-              >
-                ✨ All Recipes
-              </MenuItem>
-
-              {/* World Cuisines */}
-              <MenuItem
-                fontWeight="bold"
-                isDisabled
-                color="#E53E3E"
-                fontSize="sm"
-                bg="rgba(255, 215, 0, 0.1)"
-                px={3}
-                py={2}
-                mb={1}
-              >
-                🌍 WORLD CUISINES
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("mexican");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🌮 Mexican
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("italian");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍕 Italian
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("indian");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍛 Indian
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("thai");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍜 Thai
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("korean");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥘 Korean
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("chinese");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥡 Chinese
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("japanese");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍱 Japanese
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("french");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥐 French
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("american");
-                  setSearchTerm("");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍔 American
-              </MenuItem>
-
-              {/* Popular */}
-              <MenuItem
-                fontWeight="bold"
-                isDisabled
-                color="#E53E3E"
-                fontSize="sm"
-                bg="rgba(255, 215, 0, 0.1)"
-                px={3}
-                py={2}
-                mt={2}
-                mb={1}
-              >
-                🔥 POPULAR
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("soup");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍲 Soup Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("chili");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🌶️ Chili Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("pasta");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍝 Pasta Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("salad");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥗 Salad Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("bread");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍞 Bread Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("cookie");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍪 Cookie Recipes
-              </MenuItem>
-
-              {/* Healthy & Diet */}
-              <MenuItem
-                fontWeight="bold"
-                isDisabled
-                color="#E53E3E"
-                fontSize="sm"
-                bg="rgba(255, 215, 0, 0.1)"
-                px={3}
-                py={2}
-                mt={2}
-                mb={1}
-              >
-                🥗 HEALTHY & DIET
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("keto");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥑 Keto Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("healthy");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                💚 Healthy Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSelectedDiet("Vegetarian");
-                  setSearchTerm("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🌱 Vegetarian Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSelectedDiet("Vegan");
-                  setSearchTerm("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥬 Vegan Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSelectedDiet("Pescatarian");
-                  setSearchTerm("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🐟 Pescatarian Recipes
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("gluten free");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🌾 Gluten-Free Recipes
-              </MenuItem>
-
-              {/* Holidays */}
-              <MenuItem
-                fontWeight="bold"
-                isDisabled
-                color="#E53E3E"
-                fontSize="sm"
-                bg="rgba(255, 215, 0, 0.1)"
-                px={3}
-                py={2}
-                mt={2}
-                mb={1}
-              >
-                🎉 HOLIDAYS
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("thanksgiving");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🦃 Thanksgiving
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("christmas");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🎄 Christmas
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("halloween");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🎃 Halloween
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("easter");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🐰 Easter
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("valentine");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                💝 Valentine&apos;s Day
-              </MenuItem>
-
-              {/* Meals */}
-              <MenuItem
-                fontWeight="bold"
-                isDisabled
-                color="#E53E3E"
-                fontSize="sm"
-                bg="rgba(255, 215, 0, 0.1)"
-                px={3}
-                py={2}
-                mt={2}
-                mb={1}
-              >
-                🍽️ MEAL TYPES
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("breakfast");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍳 Breakfast
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("lunch");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🥪 Lunch
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("dinner");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍽️ Dinner
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("dessert");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍰 Desserts
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("drink");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍹 Drinks
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setSelectedCategory("");
-                  setSearchTerm("snack");
-                  setSelectedDiet("");
-                }}
-                _hover={{ bg: "rgba(255, 215, 0, 0.2)" }}
-                pl={6}
-              >
-                🍿 Snacks
-              </MenuItem>
-            </MenuList>
-          </Menu>
         </Box>
       </Flex>
 
       {/* Mobile Layout */}
       <Box display={{ base: "block", lg: "none" }}>
-        <Flex align="center" justify="center" mb={2} position="relative">
+        <Flex align="center" justify="center" position="relative">
           <IconButton
             icon={
               <svg
@@ -651,7 +195,7 @@ export const Navbar = ({
             aria-label="Open search"
             position="absolute"
             left="0"
-            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+            _hover={{ bg: "rgba(255,255,255,0.08)" }}
           />
           <Link to="/" onClick={handleLogoClick}>
             <Box
@@ -665,7 +209,15 @@ export const Navbar = ({
           </Link>
           <IconButton
             icon={
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#FFD700" strokeWidth="3" strokeLinecap="round">
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                fill="none"
+                stroke="#FFD700"
+                strokeWidth="3"
+                strokeLinecap="round"
+              >
                 <line x1="6" y1="10" x2="26" y2="10" />
                 <line x1="6" y1="16" x2="26" y2="16" />
                 <line x1="6" y1="22" x2="26" y2="22" />
@@ -678,7 +230,7 @@ export const Navbar = ({
             aria-label="Open menu"
             position="absolute"
             right="0"
-            _hover={{ bg: 'rgba(255,255,255,0.08)' }}
+            _hover={{ bg: "rgba(255,255,255,0.08)" }}
           />
         </Flex>
 
