@@ -232,8 +232,19 @@ export const RecipeListPage = () => {
             </Box>
 
             {/* Categories Dropdown - Centered at bottom */}
-            <Box display="flex" justifyContent="center" mt={4} position="relative" zIndex={10}>
-              <Menu placement="bottom" strategy="fixed" flip={false} autoSelect={false}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              mt={4}
+              position="relative"
+              zIndex={10}
+            >
+              <Menu
+                placement="bottom"
+                strategy="fixed"
+                flip={false}
+                autoSelect={false}
+              >
                 <MenuButton
                   as={Button}
                   size="md"
@@ -245,7 +256,7 @@ export const RecipeListPage = () => {
                   px={3}
                   py={1}
                   transition="all 0.3s"
-                  _hover={{ 
+                  _hover={{
                     bg: "rgba(255,255,255,0.3)",
                     transform: "translateY(-2px)",
                   }}
@@ -749,7 +760,7 @@ export const RecipeListPage = () => {
                 No recipes found 😕
               </Text>
               <Text color="gray.600" mb={4}>
-                We couldn't find any recipes matching your search.
+                We couldn&apos;t find any recipes matching your search.
               </Text>
               <Text color="gray.500" fontSize="sm">
                 Try adjusting your search terms or explore our suggestions below
