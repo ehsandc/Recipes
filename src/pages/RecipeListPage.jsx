@@ -84,7 +84,7 @@ export const RecipeListPage = () => {
    */
   const suggestedRecipes = useMemo(() => {
     if (filteredRecipes.length > 0) return [];
-    
+
     // Get random 8 recipes as suggestions
     const allRecipes = [...data.hits];
     const shuffled = allRecipes.sort(() => 0.5 - Math.random());
@@ -138,7 +138,7 @@ export const RecipeListPage = () => {
         color={COLORS.white}
         py={{ base: 6, md: 8 }}
         mt={{
-          base: SPACING.navbar.height.mobile,
+          base: "64px",
           lg: SPACING.navbar.height.desktop,
         }}
         position="relative"
@@ -170,7 +170,7 @@ export const RecipeListPage = () => {
                 WebkitTextStroke: "1px rgba(255,255,255,0.5)",
                 textStroke: "1px rgba(255,255,255,0.5)",
               }}
-              ml={{ base: 0, md: -10 }}
+              ml={{ base: -7, md: -10 }}
             >
               🍳 Discover Amazing
             </Text>
